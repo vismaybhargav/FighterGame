@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk2unasgch35f"]
+
+[ext_resource type="PackedScene" uid="uid://dsvqnectcxeao" path="res://Scenes/BasePlayer.tscn" id="1_tjhpu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o8pjy"]
+sky_top_color = Color(0.188235, 0.454902, 0.74902, 1)
+sky_horizon_color = Color(0.435294, 0.686275, 0.862745, 1)
+ground_bottom_color = Color(0.2, 0.168627, 0.133333, 1)
+ground_horizon_color = Color(0.439216, 0.623529, 0.705882, 1)
+
+[sub_resource type="Sky" id="Sky_8v78p"]
+sky_material = SubResource("ProceduralSkyMaterial_o8pjy")
+
+[sub_resource type="Environment" id="Environment_v30ex"]
+background_mode = 2
+sky = SubResource("Sky_8v78p")
+
+[node name="Level" type="Node3D"]
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2.5)
+use_collision = true
+size = Vector3(26, 1, 6)
+
+[node name="Player" parent="." instance=ExtResource("1_tjhpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, -2)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.938848, 0.344332, 0, -0.344332, 0.938848, 0, 6.51165, 11)
+
+[node name="env" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
+environment = SubResource("Environment_v30ex")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(0.450889, -0.515517, 0.728657, 0.271264, 0.85688, 0.438376, -0.850361, 1.73946e-08, 0.526199, 18.0683, 13.8546, 0.0353994)
+light_energy = 2.126

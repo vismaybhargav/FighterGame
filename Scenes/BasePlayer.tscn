@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsvqnectcxeao"]
+
+[ext_resource type="Script" path="res://Scripts/BasePlayer.cs" id="1_ajbke"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_igoli"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ukv8"]
+albedo_color = Color(0.313726, 0.658824, 1, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t7e2f"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_ajbke")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_igoli")
+surface_material_override/0 = SubResource("StandardMaterial3D_2ukv8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_t7e2f")
